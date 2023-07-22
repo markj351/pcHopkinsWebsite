@@ -1,0 +1,6 @@
+.nav__link--list {
+    display: flex;
+}
+.nav__link {
+    padding: 16px;
+}
