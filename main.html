@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progressive Church of Our Lord Jesus Christ — Hopkins, SC</title>
+  <meta name="description" content="Welcome to Progressive Church of Our Lord Jesus Christ in Hopkins, SC. Service times, sermons, events, and contact information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --brand: #0ea5e9; /* sky-500 */
+      --brand-dark: #0284c7; /* sky-600 */
+      --surface: #f1f5f9; /* slate-100 */
+      --ring: rgba(2,132,199,.4);
+    }
+    :root.dark{
+      --bg: #0b1220; /* deep slate */
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --brand: #38bdf8;
+      --brand-dark: #0ea5e9;
+      --surface: #111827; /* gray-900 */
+      --ring: rgba(56,189,248,.4);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    
+    /* container */
+    .wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
+
+    /* header */
+    header{
+      position:sticky;top:0;z-index:30;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;gap:.75rem;align-items:center;font-weight:800;letter-spacing:.2px}
+    .brand img{width:40px;height:40px;border-radius:8px;object-fit:cover}
+    .brand span{font-size:1rem}
+    .nav ul{display:flex;gap:1rem;align-items:center;list-style:none;margin:0;padding:0}
+    .nav a{padding:.5rem .75rem;border-radius:.75rem}
+    .nav a:hover{background:var(--surface)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem .9rem;border-radius:.8rem;border:1px solid color-mix(in srgb,var(--text)20%,transparent);background:var(--bg)}
+    .btn--brand{background:var(--brand);color:white;border-color:var(--brand-dark)}
+    .btn--brand:hover{background:var(--brand-dark)}
+    .icon{width:20px;height:20px}
+    .only-mobile{display:none}
+
+    /* mobile menu */
+    .menu{display:none}
+    .menu.open{display:block}
+    .menu a{display:block;padding:.9rem 0;border-bottom:1px dashed color-mix(in srgb,var(--text) 12%, transparent)}
+
+    @media (max-width: 880px){
+      .nav ul{display:none}
+      .only-mobile{display:inline-flex}
+      .menu{background:var(--bg);padding:1rem}
+    }
+
+    /* hero */
+    .hero{position:relative;isolation:isolate}
+    .hero::before{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background-image:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25)), url('assets/hero.jpg');
+      background-size:cover;background-position:center;
+      filter:saturate(1.05);
+    }
+    .hero-inner{min-height:62vh;display:grid;place-items:center;text-align:center;color:#fff}
+    .hero h1{font-size:clamp(2rem,5vw,3rem);margin:.25rem 0 .5rem;font-weight:800}
+    .hero p{max-width:720px;margin:0 auto 1.25rem;font-size: clamp(1rem, 1.8vw, 1.125rem)}
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.75rem}
+    .chip{padding:.35rem .6rem;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);font-size:.85rem}
+
+    /* sections */
+    section{padding:4rem 0}
+    section h2{font-size:clamp(1.5rem,3vw,2rem);margin:0 0 1rem;font-weight:800}
+    section .lead{color:var(--muted);max-width:750px}
+    .grid{display:grid;gap:1rem}
+
+    /* about */
+    .about{grid-template-columns: 1.1fr .9fr}
+    .card{background:var(--surface);border:1px solid color-mix(in srgb,var(--text)12%,transparent);border-radius:1rem;padding:1rem}
+    .prose p{margin:.5rem 0}
+
+    @media (max-width: 960px){
+      .about{grid-template-columns:1fr}
+    }
+
+    /* media (sermons) */
+    .media-grid{grid-template-columns: repeat(3,1fr)}
+    .media-item{border:1px solid color-mix(in srgb,var(--text)12%,transparent);border-radius:1rem;overflow:hidden;background:var(--bg)}
+    .media-item iframe{width:100%;aspect-ratio:16/9;border:0}
+    .media-item .meta{padding:.75rem}
+    .media-item .meta h3{margin:.25rem 0 .4rem;font-size:1rem}
+    .media-item .meta p{color:var(--muted);margin:0;font-size:.9rem}
+
+    @media (max-width: 1024px){
+      .media-grid{grid-template-columns: repeat(2,1fr)}
+    }
+    @media (max-width: 700px){
+      .media-grid{grid-template-columns: 1fr}
+    }
+
+    /* service times */
+    .times{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .time{border:1px solid color-mix(in srgb,var(--text)12%,transparent);border-radius:1rem;padding:1rem}
+    .time h3{margin:.25rem 0 .4rem}
+    @media (max-width:900px){.times{grid-template-columns:1fr}}
+
+    /* visit/map */
+    .map{border:0;width:100%;aspect-ratio:16/10;border-radius:1rem}
+
+    /* contact */
+    form{display:grid;gap:.8rem;max-width:720px}
+    label{font-weight:600}
+    input, textarea{width:100%;padding:.85rem;border-radius:.8rem;border:1px solid color-mix(in srgb,var(--text)25%,transparent);background:var(--bg);color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--ring);border-color:var(--brand-dark)}
+    textarea{min-height:140px}
+    .small{font-size:.9rem;color:var(--muted)}
+
+    /* footer */
+    footer{padding:2.5rem 0;border-top:1px solid color-mix(in srgb,var(--text) 12%, transparent);background:var(--surface)}
+    .footgrid{display:grid;gap:1rem;grid-template-columns: 1.4fr 1fr 1fr}
+    .footgrid h4{margin:.2rem 0  .5rem}
+    .subtle{color:var(--muted);font-size:.95rem}
+    @media (max-width:900px){.footgrid{grid-template-columns:1fr}}
+
+    /* utility */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="wrap nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#home">
+        <img src="assets/logo.jpg" alt="Progressive Church logo" />
+        <span>Progressive Church — Hopkins, SC</span>
+      </a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#times">Service Times</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#contact" class="btn">Contact</a></li>
+        <li><button class="btn only-desktop" id="contrastBtn" aria-pressed="false" aria-label="Toggle dark mode">🌓</button></li>
+      </ul>
+      <button class="btn only-mobile" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+    </div>
+    <div class="wrap menu" id="mobileMenu" hidden>
+      <a href="#about">About</a>
+      <a href="#media">Media</a>
+      <a href="#times">Service Times</a>
+      <a href="#visit">Visit</a>
+      <a href="#contact">Contact</a>
+      <button class="btn" id="contrastBtnMobile" aria-pressed="false" aria-label="Toggle dark mode">🌓 Dark Mode</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="hero-inner wrap">
+      <div>
+        <h1>Welcome to Progressive Church of Our Lord Jesus Christ in Hopkins, SC</h1>
+        <p>
+          A Christ-centered, Bible-believing church serving the Hopkins community. We'd love to meet you this Sunday!
+        </p>
+        <div class="chips" aria-label="Highlights">
+          <span class="chip">Spirit-led Worship</span>
+          <span class="chip">Biblical Teaching</span>
+          <span class="chip">Family + Youth</span>
+        </div>
+        <p style="margin-top:1rem">
+          <a class="btn btn--brand" href="#times">Plan Your Visit</a>
+          <a class="btn" href="#media">Watch a Sermon</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap">
+      <h2>About Us</h2>
+      <p class="lead">Progressive Church of Our Lord Jesus Christ is a welcoming congregation in Hopkins, South Carolina. Our mission is to proclaim the gospel of Jesus Christ, disciple believers, and serve our community with compassion.</p>
+      <div class="grid about" style="margin-top:1rem">
+        <article class="card prose">
+          <h3>What We Believe</h3>
+          <p>We believe the Bible is the inspired Word of God and that salvation is found in Jesus Christ. We are committed to prayer, worship, and living out the gospel every day.</p>
+          <p>New to church? We’re glad you’re here. Come as you are—there’s a place for you and your family.</p>
+          <ul>
+            <li>Christ-centered preaching and teaching</li>
+            <li>Vibrant worship and prayer</li>
+            <li>Ministries for children, youth, and adults</li>
+          </ul>
+        </article>
+        <aside class="card">
+          <h3>Visit Details</h3>
+          <p class="subtle">Dress is casual to business casual. Greeters will help you find a seat.</p>
+          <p><strong>Location:</strong> Hopkins, SC (see map below)</p>
+          <p><strong>Parking:</strong> On-site, with accessible spaces near the main entrance.</p>
+          <p><strong>Families:</strong> We love kids! Ask about children’s church and nursery options.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media / Sermons -->
+  <section id="media" aria-label="Recent Sermons">
+    <div class="wrap">
+      <h2>Media</h2>
+      <p class="lead">Catch up on recent messages and testimonies. Replace these with your church’s YouTube or Facebook video links.</p>
+      <div class="grid media-grid" style="margin-top:1rem">
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sermon 1" allowfullscreen loading="lazy"></iframe>
+          <div class="meta">
+            <h3>Sample Sermon Title</h3>
+            <p>Pastor Name • July 20, 2025</p>
+          </div>
+        </div>
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sermon 2" allowfullscreen loading="lazy"></iframe>
+          <div class="meta">
+            <h3>Another Message</h3>
+            <p>Guest Speaker • June 15, 2025</p>
+          </div>
+        </div>
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Testimony" allowfullscreen loading="lazy"></iframe>
+          <div class="meta">
+            <h3>Testimony Highlight</h3>
+            <p>Member Story • May 5, 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Times -->
+  <section id="times">
+    <div class="wrap">
+      <h2>Service Times</h2>
+      <p class="lead">We gather weekly for worship, teaching, and prayer. Times below can be customized.</p>
+      <div class="times" style="margin-top:1rem">
+        <div class="time">
+          <h3>Sunday Worship</h3>
+          <p>10:00 AM — Main Sanctuary</p>
+          <p class="subtle">Children’s church available</p>
+        </div>
+        <div class="time">
+          <h3>Bible Study</h3>
+          <p>Wednesday 7:00 PM — Fellowship Hall</p>
+          <p class="subtle">Youth & adults</p>
+        </div>
+        <div class="time">
+          <h3>Prayer Gathering</h3>
+          <p>Friday 6:30 PM — Prayer Room</p>
+          <p class="subtle">All are welcome</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit / Map -->
+  <section id="visit" aria-label="Visit Us">
+    <div class="wrap">
+      <h2>Visit Us</h2>
+      <p class="lead">We’re located in Hopkins, South Carolina. Tap the map for directions.</p>
+      <div class="card" style="margin-top:1rem">
+        <iframe class="map" loading="lazy" allowfullscreen 
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3392.327!2d-80.877!3d33.904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000:0x0000000000000000!2sHopkins%2C%20SC!5e0!3m2!1sen!2sus!4v1710000000000">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact Us</h2>
+      <p class="lead">Have a question or prayer request? Send us a message and we’ll follow up soon.</p>
+      <form id="contactForm" style="margin-top:1rem">
+        <div>
+          <label for="name">Full Name</label>
+          <input id="name" name="name" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn--brand">Send Message</button>
+          <span class="small" id="formNote">This demo opens your email app. We can wire it up to Formspree or a backend later.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footgrid">
+      <div>
+        <strong>Progressive Church of Our Lord Jesus Christ</strong>
+        <p class="subtle">Hopkins, SC • © <span id="year"></span></p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p class="subtle"><a href="#about">About</a> · <a href="#media">Media</a> · <a href="#times">Service Times</a> · <a href="#visit">Visit</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p class="subtle"><a href="mailto:info@progressivechurch.org">info@progressivechurch.org</a><br><span aria-hidden="true">•</span> (XXX) XXX‑XXXX</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth-scroll for same-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+          // close mobile menu after click
+          mobileMenu(false)
+        }
+      })
+    })
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn')
+    const menu = document.getElementById('mobileMenu')
+    function mobileMenu(open){
+      const isOpen = open ?? menu.classList.contains('open')
+      if(isOpen){
+        menu.classList.remove('open');
+        menu.setAttribute('hidden', '');
+        menuBtn.setAttribute('aria-expanded','false')
+      }else{
+        menu.classList.add('open');
+        menu.removeAttribute('hidden')
+        menuBtn.setAttribute('aria-expanded','true')
+      }
+    }
+    menuBtn.addEventListener('click',()=> mobileMenu())
+
+    // Dark mode toggle with persistence
+    const root = document.documentElement
+    const contrastBtn = document.getElementById('contrastBtn')
+    const contrastBtnMobile = document.getElementById('contrastBtnMobile')
+    const setDark = (on)=>{
+      root.classList.toggle('dark', on)
+      localStorage.setItem('pc_dark', on ? '1' : '0')
+      const pressed = on ? 'true' : 'false'
+      if(contrastBtn) contrastBtn.setAttribute('aria-pressed', pressed)
+      if(contrastBtnMobile) contrastBtnMobile.setAttribute('aria-pressed', pressed)
+    }
+    const saved = localStorage.getItem('pc_dark')==='1'
+    setDark(saved)
+    ;[contrastBtn, contrastBtnMobile].forEach(btn=> btn && btn.addEventListener('click',()=> setDark(!root.classList.contains('dark'))))
+
+    // Contact form -> mailto fallback
+    const form = document.getElementById('contactForm')
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault()
+      const name = document.getElementById('name').value.trim()
+      const email = document.getElementById('email').value.trim()
+      const message = document.getElementById('message').value.trim()
+      const subject = encodeURIComponent('Website Inquiry from ' + name)
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+      window.location.href = `mailto:info@progressivechurch.org?subject=${subject}&body=${body}`
+    })
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear()
+  </script>
+</body>
+</html>
