@@ -381,7 +381,12 @@ footer { padding: 2.5rem 0; border-top: 1px solid color-mix(in srgb,var(--text) 
     menuBtn.addEventListener('click',()=> mobileMenu())
 
     // Dark mode toggle with persistence
-    const root = document.documentElement
+    const root = document.documentElement;
+    const stored = localStorage.getItem('pc_dark');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // Only apply system preference if user hasn't chosen yet
+    if (stored === null) root.classList.toggle('dark', prefersDark);
+
     const contrastBtn = document.getElementById('contrastBtn')
     const contrastBtnMobile = document.getElementById('contrastBtnMobile')
     const setDark = (on)=>{
