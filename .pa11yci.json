@@ -1,0 +1,11 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 60000,
+    "level": "error",
+    "hideElements": "iframe, .map"  
+  },
+  "urls": [
+    "https://markj351.github.io/pcHopkinsWebsite/"
+  ]
+}
