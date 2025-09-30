@@ -1,0 +1,22 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: [ main ]   # run every time you push to main
+  workflow_dispatch:      # allow manual trigger
+
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i -g @lhci/cli
+      - name: Run Lighthouse
+        run: |
+          lhci healthcheck || true
+          lhci autorun --collect.url=https://markj351.github.io/pcHopkinsWebsite/ \
+                        --upload.target=temporary-public-storage
