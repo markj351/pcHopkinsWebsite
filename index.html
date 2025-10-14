@@ -418,6 +418,13 @@ footer { padding: 2.5rem 0; border-top: 1px solid color-mix(in srgb,var(--text) 
     
     // Year in footer
     document.getElementById('year').textContent = new Date().getFullYear()
+
+    if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/pcHopkinsWebsite/sw.js");
+  });
+}
+
   </script>
 
 </body>
