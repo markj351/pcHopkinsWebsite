@@ -189,6 +189,25 @@ footer { padding: 2.5rem 0; border-top: 1px solid color-mix(in srgb,var(--text) 
   @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+/* testimonials */
+.testimonials { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.t-card {
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+.t-quote {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 .75rem;
+}
+.t-name { margin: 0; font-weight: 600; color: var(--text); }
+
+/* responsive */
+@media (max-width: 1024px) { .testimonials { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px)  { .testimonials { grid-template-columns: 1fr; } }
+
   </style>
 </head>
 <script type="application/ld+json">
