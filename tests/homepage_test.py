@@ -1,4 +1,4 @@
-# homepage_test.py
+# tests/homepage_test.py
 import json, re, time
 from urllib.parse import unquote
 from selenium import webdriver
